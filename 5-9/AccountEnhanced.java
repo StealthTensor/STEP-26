@@ -65,8 +65,10 @@ public class AccountEnhanced {
         if (amount > this.balance) {
             return false;
         }
-        if (this.balance - amount < getMinimumBalance()) {
-            return false;
+        if ("Savings".equals(this.accountType)) {
+            if (this.balance - amount < MIN_BALANCE_SAVINGS) {
+                return false;
+            }
         }
         this.balance -= amount;
         return true;
