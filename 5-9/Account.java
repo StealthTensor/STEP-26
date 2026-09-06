@@ -19,8 +19,10 @@ public class Account {
         if (age < MIN_AGE) {
             throw new IllegalArgumentException("Customer must be at least 18 years old. Provided: " + age);
         }
-        if (!accountType.equals("Savings") && !accountType.equals("Current")) {
-            throw new IllegalArgumentException("Account type must be 'Savings' or 'Current'. Provided: " + accountType);
+        String normalizedType = accountType.toUpperCase();
+        if (!normalizedType.equals("SAVINGS") && !normalizedType.equals("CURRENT") &&
+            !normalizedType.equals("FIXED_DEPOSIT") && !normalizedType.equals("SALARY")) {
+            throw new IllegalArgumentException("Invalid account type. Provided: " + accountType);
         }
         double minBalance = getMinimumBalance(accountType);
         if (initialBalance < minBalance) {
